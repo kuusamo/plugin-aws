@@ -1,0 +1,27 @@
+{
+    "name": "kuusamo/plugin-aws",
+    "tyoe": "library",
+    "description": "Amazon Web Services plugin for Kuusamo",
+    "homepage": "https://github.com/kuusamo/plugin-aws",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Worfolk",
+            "email": "chris@worfolk.co.uk",
+            "homepage": "http://www.worfolk.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kuusamo\\Plugin\\Aws\\": "src/"
+        }
+    },
+    "require": {
+        "kuusamo/core": "*",
+        "aws/aws-sdk-php": "3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.*",
+        "squizlabs/php_codesniffer": "2.*"
+    }
+}
