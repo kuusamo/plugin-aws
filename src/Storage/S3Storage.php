@@ -49,8 +49,6 @@ class S3Storage implements StorageInterface
             throw new StorageException(sprintf('%s does not exist', $key));
         }
 
-        var_dump($response);
-
         return new StorageObject($response['Body'], $response['ContentType']);
     }
 
@@ -82,7 +80,7 @@ class S3Storage implements StorageInterface
      */
     public function delete(string $key): bool
     {
-        return $this->client->deleteObject([
+        $this->client->deleteObject([
             'Bucket' => $this->bucketName,
             'Key'    => $key,
         ]);
