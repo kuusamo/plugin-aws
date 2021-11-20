@@ -4,13 +4,14 @@ namespace Kuusamo\Plugin\Aws\Storage\Test;
 
 use Kuusamo\Plugin\Aws\Storage\S3Storage;
 use Kuusamo\Plugin\Aws\Test\Mock\S3ClientMock;
+use Aws\S3\S3Client;
 use PHPUnit\Framework\TestCase;
 
 class S3StorageTest extends TestCase
 {
     public function testGet()
     {
-        $clientMock = $this->createMock('Aws\S3\S3Client');
+        $clientMock = $this->createMock(S3Client::class);
 
         $clientMock->expects($this->once())->method('__call')->with('getObject', [[
             'Bucket' => 'test-bucket',
@@ -26,7 +27,7 @@ class S3StorageTest extends TestCase
 
     public function testPut()
     {
-        $clientMock = $this->createMock('Aws\S3\S3Client');
+        $clientMock = $this->createMock(S3Client::class);
 
         $clientMock->expects($this->once())->method('__call')->with('putObject', [[
             'Bucket' => 'test-bucket',
@@ -41,7 +42,7 @@ class S3StorageTest extends TestCase
 
     public function testDelete()
     {
-        $clientMock = $this->createMock('Aws\S3\S3Client');
+        $clientMock = $this->createMock(S3Client::class);
 
         $clientMock->expects($this->once())->method('__call')->with('deleteObject', [[
             'Bucket' => 'test-bucket',
