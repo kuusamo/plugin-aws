@@ -33,6 +33,20 @@ class S3Storage implements StorageInterface
     }
 
     /**
+     * Check an object exists.
+     *
+     * @param string $key Filename.
+     * @return StorageObject
+     */
+    public function exists($key): bool
+    {
+        return $this->client->doesObjectExist(
+            $this->bucketName,
+            $key
+        );
+    }
+
+    /**
      * GET command.
      *
      * @param string $key Filename.

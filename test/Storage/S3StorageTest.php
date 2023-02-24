@@ -9,6 +9,26 @@ use PHPUnit\Framework\TestCase;
 
 class S3StorageTest extends TestCase
 {
+    public function testExists()
+    {
+        $clientMock = $this->createMock(S3Client::class);
+
+        $clientMock->expects($this->once())->method('doesObjectExist')->with('test-bucket', 'filename.pdf')->willReturn(true);
+
+        $provider = new S3Storage($clientMock, 'test-bucket');
+        $this->assertTrue($provider->exists('filename.pdf'));
+    }
+
+    public function testDoesNotExist()
+    {
+        $clientMock = $this->createMock(S3Client::class);
+
+        $clientMock->expects($this->once())->method('doesObjectExist')->with('test-bucket', 'filename.pdf')->willReturn(false);
+
+        $provider = new S3Storage($clientMock, 'test-bucket');
+        $this->assertFalse($provider->exists('filename.pdf'));
+    }
+
     public function testGet()
     {
         $clientMock = $this->createMock(S3Client::class);
